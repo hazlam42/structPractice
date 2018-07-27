@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts-config PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 1.3//EN"
+        "http://struts.apache.org/dtds/struts-config_1_3.dtd">
+
+<struts-config>
+
+    <form-beans>
+        <form-bean name="registrationForm"
+                   type="ru.online.m.common.form.RegistrationForm"/>
+    </form-beans>
+
+    <action-mappings>
+        <action path="/register"
+                type="ru.online.m.common.action.RegistrationAction"
+                name="registrationForm"
+                scope="request"
+                input="/view/register.jsp">
+            <forward name="failure" path="/view/failure.jsp" redirect="true"/>
+            <forward name="success" path="/view/success.jsp" redirect="true"/>
+        </action>
+    </action-mappings>
+
+    <form-beans>
+        <form-bean name="onlineMForm"
+                   type="ru.online.m.common.form.OnlineMForm"/>
+    </form-beans>
+
+    <action-mappings>
+        <action path="/home"
+                type="ru.online.m.common.action.OnlineMAction"
+                name="onlineMForm">
+            <forward name="success" path="/index.jsp"/>
+        </action>
+    </action-mappings>
+
+    <form-beans>
+        <form-bean name="lookupForm" type="ru.online.m.common.form.LookupForm"/>
+    </form-beans>
+
+    <action-mappings>
+        <action path="/Lookup" type="ru.online.m.common.action.LookupAction" name="lookupForm"
+                validate="true" input="/index.jsp">
+            <forward name="success" path="/view/result.jsp"/>
+            <forward name="failure" path="/index.jsp"/>
+        </action>
+    </action-mappings>
+
+    <message-resources parameter="ApplicationResources"/>
+
+</struts-config>
